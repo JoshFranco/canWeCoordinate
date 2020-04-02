@@ -9,7 +9,7 @@
 import UIKit
 
 final class AppCoordinator: Coordinator {
-    var services: SomeServices?
+    var services: ServiceManager?
     var parent: Coordinator?
     var children: [Coordinator] = []
     
@@ -21,17 +21,18 @@ final class AppCoordinator: Coordinator {
         }
     }
     
-    convenience init(within window: UIWindow?, with services: SomeServices?) {
+    convenience init(within window: UIWindow?, with services: ServiceManager?) {
         self.init(with: services)
         
         self.window = window
     }
     
     func start() {
-//        let tabBarCoord = TabBarCoordinator(within: window, with: services)
-//        self.addChild(tabBarCoord)
-//        tabBarCoord.start()
-        startWelcomeVC()
+        if services?.userService.isUserLoggedIn ?? false {
+            startTabBarCoord()
+        } else {
+            startWelcomeVC()
+        }
         
     }
 }
@@ -40,10 +41,11 @@ private extension AppCoordinator {
     func startWelcomeVC() {
         let welcomeVC = WelcomeViewController.instantiate()
         self.rootViewController = welcomeVC
-        welcomeVC.navigation = { result, _ in
+        welcomeVC.userService = services?.userService
+        welcomeVC.navigation = { result, owner in
             switch result {
             case .login:
-                break
+                self.startTabBarCoord()
             case .signUp:
                 self.startOnboardingCoord()
             }
@@ -52,15 +54,27 @@ private extension AppCoordinator {
     
     func startOnboardingCoord() {
         let onboardingCood = OnboardingCoordinator(with: services)
-        //self.addChild(onboardingCood)
-        onboardingCood.tempVC = rootViewController
-        //onboardingCood.start()
-        onboardingCood.start { result, _ in
+        self.addChild(onboardingCood)
+        onboardingCood.start { result, coord in
             switch result {
-            case .finish(userName: let userName, password: let password):
-                break
+            case .finish(let userName, let password):
+                self.services?.userService.signUpUser(with: userName, and: password)
+                self.removeChild(coord)
+                self.start()
             }
         }
-        
+    }
+    
+    func startTabBarCoord() {
+        let tabBarCoord = TabBarCoordinator(within: window, with: services)
+        self.addChild(tabBarCoord)
+        tabBarCoord.start { (result, coord) in
+            switch result {
+            case .logout:
+                self.services?.userService.logout()
+                self.removeChild(coord)
+                self.start()
+            }
+        }
     }
 }

@@ -15,6 +15,9 @@
 		DA3FA63A242949D400B99EB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DA3FA639242949D400B99EB6 /* Assets.xcassets */; };
 		DA3FA63D242949D400B99EB6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DA3FA63B242949D400B99EB6 /* LaunchScreen.storyboard */; };
 		DA3FA648242949D400B99EB6 /* canWeCoodinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA3FA647242949D400B99EB6 /* canWeCoodinateTests.swift */; };
+		DA4F1829243558EF00BC96AE /* UserDefaults+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4F1828243558EF00BC96AE /* UserDefaults+Extension.swift */; };
+		DA4F182C24355A5B00BC96AE /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4F182B24355A5B00BC96AE /* UserService.swift */; };
+		DA4F182E24355BDE00BC96AE /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA4F182D24355BDE00BC96AE /* ServiceManager.swift */; };
 		DA8F0F612430600F00E2C987 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F0F602430600F00E2C987 /* Coordinator.swift */; };
 		DA8F0F632430608300E2C987 /* Navigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F0F622430608300E2C987 /* Navigatable.swift */; };
 		DA8F0F662430613A00E2C987 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA8F0F652430613A00E2C987 /* AppCoordinator.swift */; };
@@ -51,6 +54,9 @@
 		DA3FA643242949D400B99EB6 /* canWeCoodinateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = canWeCoodinateTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DA3FA647242949D400B99EB6 /* canWeCoodinateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = canWeCoodinateTests.swift; sourceTree = "<group>"; };
 		DA3FA649242949D400B99EB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DA4F1828243558EF00BC96AE /* UserDefaults+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extension.swift"; sourceTree = "<group>"; };
+		DA4F182B24355A5B00BC96AE /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		DA4F182D24355BDE00BC96AE /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		DA8F0F602430600F00E2C987 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		DA8F0F622430608300E2C987 /* Navigatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Navigatable.swift; sourceTree = "<group>"; };
 		DA8F0F652430613A00E2C987 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -103,6 +109,8 @@
 		DA3FA62F242949D200B99EB6 /* canWeCoodinate */ = {
 			isa = PBXGroup;
 			children = (
+				DA4F182A24355A3200BC96AE /* Services */,
+				DA4F1827243558D400BC96AE /* Extensions */,
 				DA8F0F5F24305FBB00E2C987 /* Navigation Layer */,
 				DA8F0F5E24305F8000E2C987 /* Storyboard's */,
 				DA8F0F5C24305F4C00E2C987 /* View Layer */,
@@ -121,6 +129,23 @@
 				DA3FA649242949D400B99EB6 /* Info.plist */,
 			);
 			path = canWeCoodinateTests;
+			sourceTree = "<group>";
+		};
+		DA4F1827243558D400BC96AE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				DA4F1828243558EF00BC96AE /* UserDefaults+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		DA4F182A24355A3200BC96AE /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				DA4F182B24355A5B00BC96AE /* UserService.swift */,
+				DA4F182D24355BDE00BC96AE /* ServiceManager.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		DA8F0F5C24305F4C00E2C987 /* View Layer */ = {
@@ -276,10 +301,13 @@
 				DADAF8A9243164FF00C78CFD /* OnboardingCoordinator.swift in Sources */,
 				DA2E8CEB24314CBB00503E35 /* TabBarCoordinator.swift in Sources */,
 				DA0601CD2430643000080489 /* LandingViewController.swift in Sources */,
+				DA4F1829243558EF00BC96AE /* UserDefaults+Extension.swift in Sources */,
 				DADAF89D24314E6C00C78CFD /* FirstCoordinator.swift in Sources */,
 				DADAF8A524315F4400C78CFD /* CredentialsViewController.swift in Sources */,
 				DA8F0F612430600F00E2C987 /* Coordinator.swift in Sources */,
 				DA3FA631242949D200B99EB6 /* AppDelegate.swift in Sources */,
+				DA4F182E24355BDE00BC96AE /* ServiceManager.swift in Sources */,
+				DA4F182C24355A5B00BC96AE /* UserService.swift in Sources */,
 				DADAF8A7243160A600C78CFD /* FinOnboardingViewController.swift in Sources */,
 				DA3FA633242949D200B99EB6 /* SceneDelegate.swift in Sources */,
 				DA8F0F682430632800E2C987 /* Storyboarded.swift in Sources */,

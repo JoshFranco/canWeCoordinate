@@ -8,20 +8,25 @@
 
 import UIKit
 
-final class TabBarCoordinator: Coordinator {
-    var services: SomeServices?
+final class TabBarCoordinator: Coordinator, Navigatable {
+    var services: ServiceManager?
     var parent: Coordinator?
     var children: [Coordinator] = []
     
     var window: UIWindow?
-    var rootViewController: UIViewController? {
+    var navigation: ((Route, UIViewController?) -> Void)?
+    weak var rootViewController: UIViewController? {
         didSet {
             window?.rootViewController = self.rootViewController
             window?.makeKeyAndVisible()
         }
     }
     
-    convenience init(within window: UIWindow?, with services: SomeServices?) {
+    enum Route {
+        case logout
+    }
+    
+    convenience init(within window: UIWindow?, with services: ServiceManager?) {
         self.init(with: services)
         
         self.window = window
@@ -29,6 +34,7 @@ final class TabBarCoordinator: Coordinator {
     
     func start() {
         let firstVC = LandingViewController.instantiate()
+        firstVC.userService = services?.userService
         firstVC.tabBarItem = UITabBarItem(title: "Land to Me", image: nil, selectedImage: nil)
         let firstCoord = FirstCoordinator(using: firstVC, and: services)
         
@@ -39,6 +45,6 @@ final class TabBarCoordinator: Coordinator {
     }
     
     deinit {
-        print("👏\(String(describing: self))👏")
+        print("👏\(String(describing: type(of: self)))👏")
     }
 }

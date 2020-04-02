@@ -9,43 +9,55 @@
 import UIKit
 
 final class OnboardingCoordinator: NSObject, Coordinator, Navigatable {
-    var services: SomeServices?
+    var services: ServiceManager?
     var parent: Coordinator?
     var children: [Coordinator] = []
     var navigation: ((Route, UIViewController?) -> Void)?
     weak var rootViewController: UIViewController?
-    
-    weak var tempVC: UIViewController?
     
     enum Route {
         case finish(userName: String, password: String)
     }
     
     func start() {
-        print("start")
-        
         let credentialsVC = CredentialsViewController.instantiate()
         let navController = UINavigationController(rootViewController: credentialsVC)
-        //navController.presentationController?.delegate = self
+        navController.presentationController?.delegate = self
         
-        self.tempVC?.present(navController, animated: true) 
+        self.parent?.rootViewController?.present(navController, animated: true)
         self.rootViewController = navController
-//        credentialsVC.navigation = { result, _ in
-//            switch result {
-//            case .next(userName: let userName, password: let password):
-//                break
-//            }
-//        }
+        credentialsVC.navigation = { result, _ in
+            switch result {
+            case .next(let userName, let password):
+                self.showFinOnboardingVC(with: userName, and: password)
+            }
+        }
     }
     
     deinit {
-        print("👏\(String(describing: self))👏")
+        print("👏\(String(describing: type(of: self)))👏")
     }
 }
 
-//// MARK: - UIAdaptivePresentationControllerDelegate
-//extension OnboardingCoordinator: UIAdaptivePresentationControllerDelegate {
-//    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
-//        self.parent?.removeChild(self)
-//    }
-//}
+// MARK: - Private Methods
+private extension OnboardingCoordinator {
+    func showFinOnboardingVC(with userName: String, and password: String) {
+        let finOnboardingVC = FinOnboardingViewController.instantiate()
+        finOnboardingVC.userName = userName
+        finOnboardingVC.password = password
+        
+        self.navigate(to: finOnboardingVC) { (result, owner) in
+            switch result {
+            case .finish(let userName,  let password):
+                self.navigate(.finish(userName: userName, password: password))
+            }
+        }
+    }
+}
+
+// MARK: - UIAdaptivePresentationControllerDelegate
+extension OnboardingCoordinator: UIAdaptivePresentationControllerDelegate {
+    func presentationControllerDidDismiss(_ presentationController: UIPresentationController) {
+        self.parent?.removeChild(self)
+    }
+}

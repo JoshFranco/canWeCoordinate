@@ -7,80 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A371862F-2312-4E8D-A7EC-8266181D7DDA"
+            uuid = "0D06BA6E-29BA-4956-A774-B73E65931E45"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "canWeCoodinate/Navigation Layer/OnboardingCoordinator.swift"
+            filePath = "canWeCoodinate/Navigation Layer/AppCoordinator.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "42"
-            endingLineNumber = "42"
-            landmarkName = "deinit"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5BA8F4E4-AA19-46D8-B3F9-819267D64C4C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "canWeCoodinate/Navigation Layer/Core/Coordinator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "removeChild(_:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "5BA8F4E4-AA19-46D8-B3F9-819267D64C4C - 13535faa271b3903"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(extension in canWeCoodinate):canWeCoodinate.Coordinator.removeChild(canWeCoodinate.Coordinator) -&gt; ()"
-                  moduleName = "canWeCoodinate"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshfranco/canWeCoordinate/canWeCoodinate/Navigation%20Layer/Core/Coordinator.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "60">
-               </Location>
-               <Location
-                  uuid = "5BA8F4E4-AA19-46D8-B3F9-819267D64C4C - 3b3c33425436e55"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (canWeCoodinate.Coordinator) -&gt; Swift.Bool in (extension in canWeCoodinate):canWeCoodinate.Coordinator.removeChild(canWeCoodinate.Coordinator) -&gt; ()"
-                  moduleName = "canWeCoodinate"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/joshfranco/canWeCoordinate/canWeCoodinate/Navigation%20Layer/Core/Coordinator.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "70"
-                  endingLineNumber = "70"
-                  offsetFromSymbolStart = "43">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "950E0103-5B58-4C28-917D-21E1F01C73C4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "canWeCoodinate/Navigation Layer/Core/Coordinator.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "72"
-            endingLineNumber = "72"
-            landmarkName = "removeChild(_:)"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "start()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

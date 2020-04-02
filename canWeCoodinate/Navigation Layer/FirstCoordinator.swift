@@ -9,12 +9,12 @@
 import UIKit
 
 final class FirstCoordinator: Coordinator {
-    var services: SomeServices?
+    var services: ServiceManager?
     var parent: Coordinator?
     var children: [Coordinator] = []
     var rootViewController: UIViewController?
     
-    convenience init(using root: UIViewController?, and services: SomeServices?) {
+    convenience init(using root: UIViewController?, and services: ServiceManager?) {
         self.init(with: services)
         self.rootViewController = root
     }
@@ -24,6 +24,6 @@ final class FirstCoordinator: Coordinator {
     }
     
     deinit {
-        print("👏\(String(describing: self))👏")
+        print("👏\(String(describing: type(of: self)))👏")
     }
 }

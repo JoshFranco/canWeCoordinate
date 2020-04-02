@@ -24,11 +24,18 @@ class CredentialsViewController: UIViewController, Storyboarded, Navigatable {
         super.viewDidLoad()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        view.addGestureRecognizer(tap)
+        self.view.addGestureRecognizer(tap)
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     deinit {
-        print("👏\(String(describing: self))👏")
+        print("👏\(String(describing: type(of: self)))👏")
     }
     
     // MARK: - Actions

@@ -13,6 +13,7 @@ class WelcomeViewController: UIViewController, Storyboarded, Navigatable {
     @IBOutlet weak var passwordTextField: UITextField!
     
     static var storyboard: Storyboards = . welcome
+    var userService: UserService?
     var navigation: ((Route, UIViewController?) -> Void)?
     
     enum Route {
@@ -29,12 +30,25 @@ class WelcomeViewController: UIViewController, Storyboarded, Navigatable {
     }
     
     deinit {
-        print("👏\(String(describing: self))👏")
+        print("👏\(String(describing: type(of: self)))👏")
     }
     
     // MARK: - Actions
     @IBAction func loginBtnPress(_ sender: Any) {
-        self.navigate(.login)
+        guard
+            let userName = nameTextField.text,
+            let password = passwordTextField.text else { return }
+        
+        if userService?.validate(using: userName, and: password) ?? false {
+            userService?.logInUser()
+            self.navigate(.login)
+        } else {
+            let alert = UIAlertController(title: nil,
+                                          message: "User Name and/or Password is incorrect :(",
+                                          preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok...", style: .destructive, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     @IBAction func signUpBtnPress(_ sender: Any) {

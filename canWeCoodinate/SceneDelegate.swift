@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         
         
-        self.appCoordinator = AppCoordinator(within: self.window, with: nil)
+        self.appCoordinator = AppCoordinator(within: self.window, with: ServiceManager())
         self.appCoordinator.start()
     }
 

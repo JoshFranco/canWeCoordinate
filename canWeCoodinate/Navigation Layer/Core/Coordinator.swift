@@ -9,16 +9,16 @@
 import UIKit
 
 /// Present modes for the coordinator pattern
-public enum NavigationMode {
+enum NavigationMode {
     case push(isAnimated: Bool = true)
     case present(isAnimated: Bool = true)
     case embeddedPush(isAnimated: Bool = true)
 }
 
 /// Is in charge of the navigation for another class
-public protocol Coordinator: class {
+protocol Coordinator: class {
     /// Services that are Injected into the coordinator
-    var services: SomeServices? { get set }
+    var services: ServiceManager? { get set }
     /// Parent: self's parent coordinator
     /// If Parent Coordinator is nil, then self is a the master coord
     var parent: Coordinator? { get set }
@@ -35,8 +35,8 @@ public protocol Coordinator: class {
 }
 
 // MARK: - Public Methods
-public extension Coordinator {
-    init(with services: SomeServices?) {
+extension Coordinator {
+    init(with services: ServiceManager?) {
         self.init()
         self.services = services
     }
@@ -115,14 +115,16 @@ public extension Coordinator {
 
 
 // MARK: Navigatable Methods
-public extension Coordinator where Self: Navigatable {
+extension Coordinator where Self: Navigatable {
     /// Convenience method to start a coordinator and navigate the coordinator
     /// This method will most likely be used when a coordinator navigates another coordinator
     /// - Parameter viewController: VC to start on, defaults to parents rootVC
     /// - Parameter completion: navigation result; this is where the coordinator navigates the other coordinator
-    func start(completion: @escaping (navResult, Coordinator?) -> Void) {
+    func start(completion: @escaping (navResult, Coordinator) -> Void) {
         self.start()
         self.navigation = { [weak self] result, _ in
+            guard let self = self else { return }
+            
             completion(result, self)
         }
     }

@@ -13,19 +13,19 @@ import UIKit
 /// 1) make a enum of exits and make 'navResult' equal to that enum
 /// 2) use the navigation completion to drive the the classes navigation via a coordinator
 /// 3) define what the class will do in the coordinator via the navigation completion
-public protocol Navigatable: class {
+protocol Navigatable: class {
   associatedtype navResult
   /// Completion used to control the navigation
   var navigation: ((navResult, UIViewController?) -> Void)? { get set }
 }
 
-public extension Navigatable where Self: UIViewController {
+extension Navigatable where Self: UIViewController {
   func navigate(_ result: navResult) {
     navigation?(result, self)
   }
 }
 
-public extension Navigatable where Self: Coordinator {
+extension Navigatable where Self: Coordinator {
   func navigate(_ result: navResult) {
     navigation?(result, self.rootViewController)
   }

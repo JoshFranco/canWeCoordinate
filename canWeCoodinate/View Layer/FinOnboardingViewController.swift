@@ -14,6 +14,8 @@ class FinOnboardingViewController: UIViewController, Storyboarded, Navigatable {
     
     static var storyboard: Storyboards = .onboarding
     var navigation: ((Route, UIViewController?) -> Void)?
+    var userName: String?
+    var password: String?
     
     enum Route {
         case finish(userName: String, password: String)
@@ -22,10 +24,19 @@ class FinOnboardingViewController: UIViewController, Storyboarded, Navigatable {
     // MARK: - Overrides
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userNameLabel.text = userName
+        passwordLabel.text = password
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     deinit {
-        print("👏\(String(describing: self))👏")
+        print("👏\(String(describing: type(of: self)))👏")
     }
     
     // MARK: - Actions
